@@ -18,5 +18,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 3px rgb(255 255 255 / 22%);
+  .navbar-logo {
+    a {
+      font-weight: bold;
+      color: #42b983;
+      // &.router-link-exact-active {
+      //   color: #42b983;
+      // }
+    }
+  }
 }
 </style>
