@@ -1,29 +1,75 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <!-- Navbar -->
+    <AppNavbar/>
+    <!-- End of Navbar -->
+
+    <!-- Main -->
+    <main class="main-content">
+      <router-view />
+    </main>
+    <!-- Footer -->
+    <AppFooter />
+    <!-- End of footer -->
   </div>
-  <router-view/>
 </template>
 
+<script>
+import AppFooter from "@/components/app-footer.vue";
+import AppNavbar from "@/components/app-navbar.vue";
+
+export default {
+  components: {
+    AppNavbar,
+    AppFooter,
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+/* Global rules */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans", sans-serif;
 }
 
-#nav {
+body {
+  background-color: #393e46;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1120px;
+  margin: auto;
+}
+
+// 219897
+// 42b983
+/* End of Global rules */
+
+// #app {
+//   font-family: Avenir, Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #2c3e50;
+// }
+
+.navbar {
   padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
+  background-color: #222831;
+  .navbar-logo {
+    a {
+      font-weight: bold;
       color: #42b983;
+      // &.router-link-exact-active {
+      //   color: #42b983;
+      // }
     }
   }
 }
