@@ -4,10 +4,13 @@
     <AppNavbar/>
     <!-- End of Navbar -->
 
-    <!-- Main -->
+    <!-- Main Content-->
     <main class="main-content">
-      <router-view />
+      <div class="container">
+        <router-view />
+      </div>
     </main>
+    <!-- End of main content -->
     <!-- Footer -->
     <AppFooter />
     <!-- End of footer -->
@@ -23,6 +26,7 @@ export default {
     AppNavbar,
     AppFooter,
   },
+  
 };
 </script>
 
@@ -48,6 +52,13 @@ a {
   margin: auto;
 }
 
+.main-content{
+  min-height: 650px;
+  padding: 40px 0;
+}
+
+
+
 // 219897
 // 42b983
 /* End of Global rules */
@@ -60,17 +71,4 @@ a {
 //   color: #2c3e50;
 // }
 
-.navbar {
-  padding: 30px;
-  background-color: #222831;
-  .navbar-logo {
-    a {
-      font-weight: bold;
-      color: #42b983;
-      // &.router-link-exact-active {
-      //   color: #42b983;
-      // }
-    }
-  }
-}
 </style>
