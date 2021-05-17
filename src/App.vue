@@ -6,9 +6,8 @@
 
     <!-- Main Content-->
     <main class="main-content">
-      <div class="container">
         <router-view />
-      </div>
+      
     </main>
     <!-- End of main content -->
     <!-- Footer -->
@@ -52,10 +51,10 @@ a {
   margin: auto;
 }
 
-.main-content{
-  min-height: 650px;
-  padding: 40px 0;
-}
+// .main-content{
+//   min-height: 650px;
+//   padding: 40px 0;
+// }
 
 
 
