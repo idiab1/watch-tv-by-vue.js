@@ -135,12 +135,17 @@ export default {
       &::placeholder{
         color: #454545
       }
-      
-      @media(max-width: 600px){
+      // Media query for small screen
+      @media(max-width: 599.9px){
         width: 75%;
         display: block;
         margin: auto;
         margin-bottom: 25px;
+      }
+
+      // Media query for medium screen
+      @media(min-width: 600px) and (max-width: 899.9px){
+        width: 60%;
       }
 
     }
@@ -154,7 +159,7 @@ export default {
       letter-spacing: 1px;
       line-height: 1;
       cursor: pointer;
-      
+      color: #fff;
     }
   }
 }
@@ -174,6 +179,18 @@ export default {
       flex: 1 1 30%;
       margin: 12px;
       box-shadow: 0px 0px 3px 1px #595959;
+
+      @media(max-width: 599.8px){
+        max-width: 60%;
+        flex: 0 0 60%;
+
+      }
+      @media(min-width: 600px) and (max-width: 899.9px){
+        max-width: 45%;
+        flex: 0 0 45%;
+
+      }
+
       .movie-link{
         display: flex;
         flex-direction: column;
