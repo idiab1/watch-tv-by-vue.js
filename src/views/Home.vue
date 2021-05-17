@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <!-- Movie Card -->
-    <div class="movie-card">
-      <router-link to="/movie/tt234690">
+    <div class="movie-banner">
+      <router-link to="/movie/tt3896198">
         <img class="movie-image" src="../assets/images/naruto-wallpaper.jpg" alt="Naruto Poster"/>
         <div class="movie-details">
           <h2>Naruto</h2>
@@ -15,14 +15,36 @@
     <!-- Search Box -->
     <div class="search-box">
       <div class="container">
-        <form class="search-form" @submit.prevent="">
-          <input type="text" placeholder="What are you looking for?" />
+        <form class="search-form" @submit.prevent="SearchMovies()">
+          <input type="text" placeholder="What are you looking for?" v-model="search" />
           <input type="submit" value="Search"/>
         </form>
       </div>
     </div>
     <!-- End of Search Box -->
 
+    <!-- Movies List -->
+    <div class="movies-section">
+      <div class="container">
+        <div class="movies-list">
+          <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+            <router-link class="movie-link" :to="'/movie/' + movie.imdbID">
+              <div class="movie-image">
+                <img class="movie-poster" :src="movie.Poster" :alt="movie.Title"/>
+                <div class="movie-type">
+                  <span>{{movie.Type}}</span>
+                </div>
+              </div>
+              <div class="movie-details">
+                <p class="date">{{movie.Year}}</p>
+                <h3>{{movie.Title}}</h3>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Movies List -->
 
 
   </div>
@@ -30,15 +52,39 @@
 
 <script>
 // @ is an alias to /src
+import { ref } from 'vue';
+import env from '@/env.js';
 
 export default {
-  // name: "Home",
+  setup() {
+    const search = ref("");
+    const movies = ref([]);
+
+    const SearchMovies = () =>{
+      if (search.value != "") {
+        fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}`)
+        .then(response => response.json())
+        .then(data => {
+          movies.value = data.Search;
+            search.value = "";
+          // console.log(data);
+        })
+      }
+    }
+
+    return{
+      search,
+      movies,
+      SearchMovies
+    }
+
+  }
 };
 </script>
 
 <style lang="scss">
 .home{
-  .movie-card{
+  .movie-banner{
     position: relative;
     .movie-image{
       position: relative;
@@ -114,6 +160,65 @@ export default {
 }
 /* End of Search box */
 
+/* Movies Content*/
+.movies-section{
+  padding: 25px 0 40px;
+  .movies-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
+    .movie{
+      max-width: 30%;
+      flex: 1 1 30%;
+      margin: 12px;
+      box-shadow: 0px 0px 3px 1px #595959;
+      .movie-link{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .movie-image{
+          position: relative;
+          display: block;
+          img{
+            display: block;
+            width: 100%;
+            height: 275px;
+          }
+          .movie-type{
+            position: absolute;
+            padding: 8px 16px;
+            right: 0;
+            background-color: #0cc69d;
+            bottom: 16px;
+            span{
+              text-transform: capitalize;
+              color: #FFF;
+
+            }
+          }
+        }
+        .movie-details{
+          background-color: #cecece;
+          padding: 16px 8px;
+          flex: 1 1 100%;
+          .date{
+            color: #3c3c3c;
+            font-size: 15px;
+          }
+          h3{
+            color: #000;
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* End of movies content */
 
 </style>
